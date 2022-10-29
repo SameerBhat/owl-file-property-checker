@@ -23,7 +23,9 @@
 
     <!-- http://www.cyberspark.in/sameer#functionalProperty -->
 
-    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#functionalProperty"/>
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#functionalProperty">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
     
 
 
