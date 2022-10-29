@@ -7,6 +7,41 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.cyberspark.in/sameer"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent1 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent1"/>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent2 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent2"/>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent3 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent3"/>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent4 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent4"/>
 </rdf:RDF>
 
 
