@@ -29,6 +29,14 @@
     
 
 
+    <!-- http://www.cyberspark.in/sameer#inverseFuncProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#inverseFuncProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
