@@ -27,15 +27,63 @@
     
 
 
+    <!-- http://www.cyberspark.in/sameer#Parent1Child1 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent1Child1">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent1Child2 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent1Child2">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent1Child3 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent1Child3">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent1"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.cyberspark.in/sameer#Parent2 -->
 
     <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent2"/>
     
 
 
+    <!-- http://www.cyberspark.in/sameer#Parent2Child1 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent2Child1">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent2Child2 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent2Child2">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent2"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.cyberspark.in/sameer#Parent3 -->
 
     <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent3"/>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#Parent3Child1 -->
+
+    <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent3Child1">
+        <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent3"/>
+    </owl:Class>
     
 
 
