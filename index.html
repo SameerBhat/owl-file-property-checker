@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Owl Property Checker</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Owl Property Checker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <form id="form">
+    <div>
+        <label for="fileInput" class="form-label">Please choose a owl/rdf file</label>
+        <input  class="form-control form-control-lg" id="fileInput" accept=".owl" type="file" required>
+    </div>
+
+        <div><button type="submit" class="btn btn-primary btn-block mt-4">Submit</button></div>
+
+    </form>
+
+
+    <div class="alert alert-success mt-5" style="display: none" id="alert"></div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(()=>{
+
+        const $form = $('#form');
+
+
+        $form.submit((e)=>{
+            e.preventDefault();
+            $('#alert').empty();
+
+            const files = $('#fileInput').prop('files');
+
+            if (files.length > 0){
+
+                const file = files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.readAsText(file, "UTF-8");
+                    reader.onload = function (evt) {
+                        const data = evt.target.result;
+                        const $element = $(data);
+
+
+                        const classes = $element.find("owl\\:Class");
+                        const objectProperties = $element.find("owl\\:ObjectProperty");
+                        const InverseFunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#InverseFunctionalProperty']")
+                        const TransitiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#TransitiveProperty']")
+                        const AsymmetricProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#AsymmetricProperty']")
+                        const IrreflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#IrreflexiveProperty']")
+                        const FunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#FunctionalProperty']")
+                        const ReflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#ReflexiveProperty']")
+
+
+                        const result = "<b>Classes: </b>"+ classes.length + '<br>' +
+                              "<b>ObjectProperties: </b>"+ objectProperties.length+ '<br>' +
+                             '<b>InverseFunctionalProperty:</b> '+ InverseFunctionalProperty.length+ '<br>' +
+                            '<b>TransitiveProperty:</b> '+ TransitiveProperty.length+ '<br>' +
+                            '<b>AsymmetricProperty:</b> '+ AsymmetricProperty.length+ '<br>' +
+                            '<b>IrreflexiveProperty:</b> '+ IrreflexiveProperty.length+ '<br>' +
+                            '<b>FunctionalProperty:</b> '+ FunctionalProperty.length+ '<br>' +
+                            '<b>ReflexiveProperty:</b> '+ ReflexiveProperty.length;
+
+
+
+                        $('#alert').append(result);
+                        console.log("result", result)
+                        $('#alert').show();
+
+
+
+
+
+                    }
+                    reader.onerror = function (evt) {
+                        alert("something went wrong")
+                    }
+                }
+
+            }else{
+                alert("No file selected")
+            }
+
+
+
+        });
+    });
+
+</script>
+</body>
+</html>
