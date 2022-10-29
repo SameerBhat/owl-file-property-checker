@@ -160,6 +160,7 @@
 
     <owl:Class rdf:about="http://www.cyberspark.in/sameer#Parent2Child1">
         <rdfs:subClassOf rdf:resource="http://www.cyberspark.in/sameer#Parent2"/>
+        <owl:disjointWith rdf:resource="http://www.cyberspark.in/sameer#Parent2Child2"/>
     </owl:Class>
     
 
