@@ -21,6 +21,46 @@
     
 
 
+    <!-- http://www.cyberspark.in/sameer#SymmetricProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#SymmetricProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#TransitiveAndInverseFunctional -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#TransitiveAndInverseFunctional">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#asymmetricProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#asymmetricProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#childFunctionalAndIrreflexiveProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#childFunctionalAndIrreflexiveProperty">
+        <rdfs:subPropertyOf rdf:resource="http://www.cyberspark.in/sameer#parentProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#functionalAndTransitive -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#functionalAndTransitive"/>
+    
+
+
     <!-- http://www.cyberspark.in/sameer#functionalProperty -->
 
     <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#functionalProperty">
@@ -33,6 +73,38 @@
 
     <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#inverseFuncProp">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#irreflexiveProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#irreflexiveProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#parentProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#parentProperty">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#reflexiveProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#reflexiveProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cyberspark.in/sameer#transitiveProp -->
+
+    <owl:ObjectProperty rdf:about="http://www.cyberspark.in/sameer#transitiveProp">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     </owl:ObjectProperty>
     
 
