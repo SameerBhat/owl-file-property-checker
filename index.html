@@ -31,7 +31,7 @@
     <form id="form">
     <div>
         <label for="fileInput" class="form-label">Please choose a owl/rdf file</label>
-        <input  class="form-control form-control-lg" id="fileInput" accept=".owl" type="file" required>
+        <input  class="form-control form-control-lg" multiple="true" id="fileInput" accept=".owl" type="file" required>
     </div>
 
         <div><button type="submit" class="btn btn-primary btn-block mt-4">Submit</button></div>
@@ -39,7 +39,10 @@
     </form>
 
 
-    <div class="alert alert-success mt-5" style="display: none" id="alert"></div>
+    <div id="alert" style="display: none">
+
+    </div>
+
 </div>
 
 
@@ -59,116 +62,13 @@
 
             if (files.length > 0){
 
-                const file = files[0];
-
-                if (file) {
-                    const reader = new FileReader();
-                    reader.readAsText(file, "UTF-8");
-                    reader.onload = function (evt) {
-                        const data = evt.target.result;
-                        const $element = $(data);
-
-
-                        const classes = $element.find("owl\\:Class");
-                        const objectProperties = $element.find("owl\\:ObjectProperty");
-                        const ranges = $element.find("rdfs\\:range");
-                        const domains = $element.find("rdfs\\:domain");
-
-                        const SubClasses = $element.find("rdfs\\:subClassOf");
-                        const EquivalentClasses = $element.find("owl\\:equivalentClass");
-                        const DisjointWith = $element.find("owl\\:disjointWith");
-                        const Comments = $element.find("rdfs\\:comment");
-
-
-                        const NamedIndividuals = $element.find("owl\\:NamedIndividual");
-
-                        const InverseOfProperty = $element.find("owl\\:inverseOf");
-
-
-                        const InverseFunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#InverseFunctionalProperty']");
-                        const TransitiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#TransitiveProperty']");
-                        const AsymmetricProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#AsymmetricProperty']");
-                        const IrreflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#IrreflexiveProperty']");
-                        const FunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#FunctionalProperty']");
-                        const ReflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#ReflexiveProperty']");
-
-                        const UnionPropertyRestriction = $element.find("owl\\:unionOf");
-
-                        const OnPropertyRestriction = $element.find("owl\\:onProperty");
-                        const SomeValuesFromRestriction = $element.find("owl\\:someValuesFrom");
-                        const AllValuesFromRestriction = $element.find("owl\\:allValuesFrom");
-                        const HasValueRestriction = $element.find("owl\\:hasValue");
-                        const WithRestriction = $element.find("owl\\:withRestrictions");
-
-                        const IntersectionOf = $element.find("owl\\:intersectionOf");
-                        const Members = $element.find("owl\\:members");
-
-
-                        // Data types
-                        const dataTypeProperties =  $element.find("[rdf\\:datatype]");
-                        const properties = [];
-                        dataTypeProperties.each((it,el) =>{
-                            const $el = $(el);
-                            properties.push($el.prop('tagName')+'  '+$el.attr('rdf:datatype'))
-
-                        });
-                        const UniqueProperties = Array.from(new Set(properties));
-
-                        console.log("Unique Properties", Array.from(new Set(properties)))
-
-
-                        let result = "<b>Classes: </b>"+ classes.length + '<br>' +
-                              "<b>ObjectProperties: </b>"+ objectProperties.length+ '<br>' +
-                              "<b>Ranges: </b>"+ ranges.length+ '<br>' +
-                              "<b>Domains: </b>"+ domains.length+ '<br>' +
-                              "<b>Comments: </b>"+ Comments.length+ '<br>' +
-                              "<b>SubClasses: </b>"+ SubClasses.length+ '<br>' +
-                              "<b>EquivalentClasses: </b>"+ EquivalentClasses.length+ '<br>' +
-                              "<b>DisjointWith: </b>"+ DisjointWith.length+ '<br>' +
-                              "<b>InverseOfProperty: </b>"+ InverseOfProperty.length+ '<br>' +
-                             '<b>InverseFunctionalProperty:</b> '+ InverseFunctionalProperty.length+ '<br>' +
-                            '<b>TransitiveProperty:</b> '+ TransitiveProperty.length+ '<br>' +
-                            '<b>AsymmetricProperty:</b> '+ AsymmetricProperty.length+ '<br>' +
-                            '<b>IrreflexiveProperty:</b> '+ IrreflexiveProperty.length+ '<br>' +
-                            '<b>FunctionalProperty:</b> '+ FunctionalProperty.length+ '<br>' +
-                            '<b>ReflexiveProperty:</b> '+ ReflexiveProperty.length + '<br>' +
-                            '<b>UnionPropertyRestriction:</b> '+ UnionPropertyRestriction.length+ '<br>' +
-                            '<b>OnPropertyRestriction:</b> '+ OnPropertyRestriction.length+ '<br>' +
-                            '<b>SomeValuesFromRestriction:</b> '+ SomeValuesFromRestriction.length+ '<br>' +
-                            '<b>AllValuesFromRestriction:</b> '+ AllValuesFromRestriction.length+ '<br>' +
-                            '<b>HasValueRestriction:</b> '+ HasValueRestriction.length+ '<br>' +
-                            '<b>WithRestriction:</b> '+ WithRestriction.length+ '<br>' +
-                            '<b>IntersectionOf:</b> '+ IntersectionOf.length+ '<br>' +
-                            '<b>Members:</b> '+ Members.length+ '<br>' ;
-
-
-                        let uniquePropertyResults = ''
-                        if (UniqueProperties.length>0){
-                             uniquePropertyResults = `<b>Unique Data Properties</b><br>`+UniqueProperties.join("<br>");
-                        }else{
-                            uniquePropertyResults = '<br><br><b>No Unique Data Properties found</b>'
-                        }
-
-
-                        result = result+uniquePropertyResults;
-
-
-
-
-
-                        $('#alert').append(result);
-                        console.log("result", result)
-                        $('#alert').show();
-
-
-
-
-
-                    }
-                    reader.onerror = function (evt) {
-                        alert("something went wrong")
-                    }
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    processFile(file);
                 }
+
+                $('#alert').show();
+
 
             }else{
                 alert("No file selected")
@@ -178,6 +78,121 @@
 
         });
     });
+
+
+    function processFile(file) {
+
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function (evt) {
+                const data = evt.target.result;
+                const $element = $(data);
+
+
+                const classes = $element.find("owl\\:Class");
+                const objectProperties = $element.find("owl\\:ObjectProperty");
+                const ranges = $element.find("rdfs\\:range");
+                const domains = $element.find("rdfs\\:domain");
+
+                const SubClasses = $element.find("rdfs\\:subClassOf");
+                const EquivalentClasses = $element.find("owl\\:equivalentClass");
+                const DisjointWith = $element.find("owl\\:disjointWith");
+                const Comments = $element.find("rdfs\\:comment");
+
+
+                const NamedIndividuals = $element.find("owl\\:NamedIndividual");
+
+                const InverseOfProperty = $element.find("owl\\:inverseOf");
+
+
+                const InverseFunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#InverseFunctionalProperty']");
+                const TransitiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#TransitiveProperty']");
+                const AsymmetricProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#AsymmetricProperty']");
+                const IrreflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#IrreflexiveProperty']");
+                const FunctionalProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#FunctionalProperty']");
+                const ReflexiveProperty = $element.find("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#ReflexiveProperty']");
+
+                const UnionPropertyRestriction = $element.find("owl\\:unionOf");
+
+                const OnPropertyRestriction = $element.find("owl\\:onProperty");
+                const SomeValuesFromRestriction = $element.find("owl\\:someValuesFrom");
+                const AllValuesFromRestriction = $element.find("owl\\:allValuesFrom");
+                const HasValueRestriction = $element.find("owl\\:hasValue");
+                const WithRestriction = $element.find("owl\\:withRestrictions");
+
+                const IntersectionOf = $element.find("owl\\:intersectionOf");
+                const Members = $element.find("owl\\:members");
+
+
+                // Data types
+                const dataTypeProperties =  $element.find("[rdf\\:datatype]");
+                const properties = [];
+                dataTypeProperties.each((it,el) =>{
+                    const $el = $(el);
+                    properties.push($el.prop('tagName')+'  '+$el.attr('rdf:datatype'))
+
+                });
+                const UniqueProperties = Array.from(new Set(properties));
+
+                console.log("Unique Properties", Array.from(new Set(properties)))
+
+
+                let result =
+                    "<b style='color: black'>"+ file.name + '</b>' + '<br>' +
+                    "<b>Classes: </b>"+ classes.length + '<br>' +
+                    "<b>ObjectProperties: </b>"+ objectProperties.length+ '<br>' +
+                    "<b>Ranges: </b>"+ ranges.length+ '<br>' +
+                    "<b>Domains: </b>"+ domains.length+ '<br>' +
+                    "<b>Comments: </b>"+ Comments.length+ '<br>' +
+                    "<b>SubClasses: </b>"+ SubClasses.length+ '<br>' +
+                    "<b>NamedIndividuals: </b>"+ NamedIndividuals.length+ '<br>' +
+                    "<b>EquivalentClasses: </b>"+ EquivalentClasses.length+ '<br>' +
+                    "<b>DisjointWith: </b>"+ DisjointWith.length+ '<br>' +
+                    "<b>InverseOfProperty: </b>"+ InverseOfProperty.length+ '<br>' +
+                    '<b>InverseFunctionalProperty:</b> '+ InverseFunctionalProperty.length+ '<br>' +
+                    '<b>TransitiveProperty:</b> '+ TransitiveProperty.length+ '<br>' +
+                    '<b>AsymmetricProperty:</b> '+ AsymmetricProperty.length+ '<br>' +
+                    '<b>IrreflexiveProperty:</b> '+ IrreflexiveProperty.length+ '<br>' +
+                    '<b>FunctionalProperty:</b> '+ FunctionalProperty.length+ '<br>' +
+                    '<b>ReflexiveProperty:</b> '+ ReflexiveProperty.length + '<br>' +
+                    '<b>UnionPropertyRestriction:</b> '+ UnionPropertyRestriction.length+ '<br>' +
+                    '<b>OnPropertyRestriction:</b> '+ OnPropertyRestriction.length+ '<br>' +
+                    '<b>SomeValuesFromRestriction:</b> '+ SomeValuesFromRestriction.length+ '<br>' +
+                    '<b>AllValuesFromRestriction:</b> '+ AllValuesFromRestriction.length+ '<br>' +
+                    '<b>HasValueRestriction:</b> '+ HasValueRestriction.length+ '<br>' +
+                    '<b>WithRestriction:</b> '+ WithRestriction.length+ '<br>' +
+                    '<b>IntersectionOf:</b> '+ IntersectionOf.length+ '<br>' +
+                    '<b>Members:</b> '+ Members.length+ '<br>' ;
+
+
+                let uniquePropertyResults = ''
+                if (UniqueProperties.length>0){
+                    uniquePropertyResults = `<b>Unique Data Properties</b><br>`+UniqueProperties.join("<br>");
+                }else{
+                    uniquePropertyResults = '<br><br><b>No Unique Data Properties found</b>'
+                }
+
+
+                result = result+uniquePropertyResults;
+
+
+
+
+                const resultAlertElement = createAlertElement(result);
+                $('#alert').append(resultAlertElement);
+
+
+            }
+            reader.onerror = function (evt) {
+                alert("something went wrong")
+            }
+        }
+    }
+
+    function createAlertElement(string){
+        return `<div class="alert alert-success mt-5" >${string}</div>`
+    }
 
 </script>
 </body>
