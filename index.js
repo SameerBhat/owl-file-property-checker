@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 
 
-const filename = "test-file.owl";
+const filename = "university.owl";
 
 fs.readFile(filename, "utf8", (err, data) => {
     if (err) {
@@ -23,7 +23,17 @@ fs.readFile(filename, "utf8", (err, data) => {
     const FunctionalProperty = $("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#FunctionalProperty']")
     const ReflexiveProperty = $("rdf\\:type[rdf\\:resource='http://www.w3.org/2002/07/owl#ReflexiveProperty']")
 
-    console.log( 'InverseFunctionalProperty', InverseFunctionalProperty.length, 'TransitiveProperty', TransitiveProperty.length, 'AsymmetricProperty', AsymmetricProperty.length, 'IrreflexiveProperty', IrreflexiveProperty.length, 'FunctionalProperty', FunctionalProperty.length, 'ReflexiveProperty', ReflexiveProperty.length)
+
+    // const ranges = $("rdfs\\:range")
+
+   const dataType =  $("[rdf\\:datatype]");
+
+    // for disjoints
+    //<owl:disjointWith rdf:resource="http://www.cyberspark.in/sameer#Parent2Child2"/>
+
+
+    // console.log("dataType", dataType.length)
+    // console.log( 'InverseFunctionalProperty', InverseFunctionalProperty.length, 'TransitiveProperty', TransitiveProperty.length, 'AsymmetricProperty', AsymmetricProperty.length, 'IrreflexiveProperty', IrreflexiveProperty.length, 'FunctionalProperty', FunctionalProperty.length, 'ReflexiveProperty', ReflexiveProperty.length)
 
     // const allPropertyTypes = $("rdf\\:type");
     // allPropertyTypes.each((it, el)=>{
